@@ -725,10 +725,6 @@ class CppGenerator(AutomaticSourceOutputGenerator):
             # If we're missing at least one, stop checking two-call stuff here.
             return False
 
-        last_param_struct = self.dict_structs.get(array_param['param'].type)
-        if self._is_base_only(last_param_struct):
-            # If this is a base type, we don't know what real type to allocate for the vector
-            return False;
 
         method.is_two_call = True
         method.masks_simple = False
@@ -740,11 +736,22 @@ class CppGenerator(AutomaticSourceOutputGenerator):
 
         item_type_cpp = _project_type_name(item_type)
         method.item_type_cpp = item_type_cpp
+        last_param_struct = self.dict_structs.get(array_param['param'].type)
+        templated = self._is_base_only(last_param_struct)
+        method.templated = templated
+        
         vector_member_type = item_type_cpp
+        if templated:
+            vector_member_type = 'ResultItemType'
+
         vec_type = f"std::vector<{vector_member_type}, Allocator>"
         method.vec_type = vec_type
         method.template_decl_list.insert(0, f"typename Allocator = std::allocator<{vector_member_type}>")
         method.template_defn_list.insert(0, "typename Allocator")
+
+        if templated:
+            method.template_decl_list.insert(0, "typename ResultItemType")
+            method.template_defn_list.insert(0, "typename ResultItemType")
 
         method.capacity_input_param_name = capacity_input_param_name
         method.count_output_param_name = count_output_param_name
