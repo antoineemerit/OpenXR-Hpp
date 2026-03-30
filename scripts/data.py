@@ -48,6 +48,7 @@ PROJECTED_NATIVE_C_TYPE = set((
 SKIP_PROJECTION = set((
     "XrBaseInStructure",
     "XrBaseOutStructure",
+    "XrSpatialAnchorCreateCompletionBD",
 ))
 
 UPPER_TOKENS = set((

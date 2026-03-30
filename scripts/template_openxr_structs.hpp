@@ -103,6 +103,28 @@ namespace impl {
         void* next;
     };
     /*{ wrapperSizeStaticAssert('::XrBaseOutStructure', 'OutputStructBase') }*/
+
+    #ifdef _WIN64
+        #pragma pack(push, 4)
+    #endif
+    
+    class XR_MAY_ALIAS FutureCompletionBaseHeaderEXT : public InputStructBase {
+    protected:
+        FutureCompletionBaseHeaderEXT(StructureType type_, void *next_) : InputStructBase(type_, next_) {}
+    
+    public:
+        XrResult futureResult;
+    };
+    
+    #ifdef _WIN64
+        #pragma pack(pop)
+    #endif
+
+    #ifdef _WIN64
+        static_assert(sizeof(FutureCompletionBaseHeaderEXT) == 20);
+    #else
+        static_assert(sizeof(FutureCompletionBaseHeaderEXT) == 24);
+    #endif
 }  // namespace impl
 
 //# filter block_doxygen_comment
