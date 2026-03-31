@@ -376,8 +376,8 @@ SKIP_PROJECTION = set((
     "XrBaseInStructure",
     "XrBaseOutStructure",
 ## unproject few OpenXR types
-#    "XrViewState",
-#    "XrView",
+    "XrViewState",
+    "XrView",
 ))
 ```
 
