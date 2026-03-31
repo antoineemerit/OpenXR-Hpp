@@ -218,6 +218,12 @@ class StructProjection:
             return "next_"
         return None
 
+    @property
+    def alignas_spec(self):
+        if self.parent_type == "XrFutureCompletionBaseHeaderEXT":
+            return "\n#ifdef _WIN64\nalignas(void*)\n#endif\n"
+        return ""
+
 
 DISPATCH_TEMPLATE_PARAM_NAME = "Dispatch"
 DISPATCH_TEMPLATE_DEFN = f"typename {DISPATCH_TEMPLATE_PARAM_NAME}"

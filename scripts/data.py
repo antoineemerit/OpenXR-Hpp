@@ -32,6 +32,7 @@ MANUALLY_PROJECTED_SCALARS = set((
 
 MANUALLY_PROJECTED = set((
     "XrEventDataBuffer",
+    "XrFutureCompletionBaseHeaderEXT",
 )).union(MANUALLY_PROJECTED_SCALARS)
 
 PROJECTED_NATIVE_C_TYPE = set((
@@ -48,7 +49,6 @@ PROJECTED_NATIVE_C_TYPE = set((
 SKIP_PROJECTION = set((
     "XrBaseInStructure",
     "XrBaseOutStructure",
-    "XrSpatialAnchorCreateCompletionBD",
 ))
 
 UPPER_TOKENS = set((

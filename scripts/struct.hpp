@@ -115,7 +115,7 @@
     //! @ingroup structs
 //#     endif
 //# endfilter
-    struct XR_MAY_ALIAS /*{ s.cpp_name }*/ /*{ s.struct_parent_decl }*/
+    struct XR_MAY_ALIAS /*{ s.alignas_spec }*/ /*{ s.cpp_name }*/ /*{ s.struct_parent_decl }*/
     {
 //# if s.typed_struct
     private:
