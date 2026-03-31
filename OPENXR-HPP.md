@@ -345,6 +345,42 @@ xr::DebugUtilsMessengerEXT messenger =
 
 ### Samples
 
+## Incompatibilities
+
+A few modifications introduced some minor incompatibilities :
+
+* pseudo native C type projection 
+* replace XrViewState and XrView with xr::viewState and xr::view.
+
+which meens that in some functions calls you must replace OpenXR type
+pointer with OpenXR-HPP type reference, and some basic C type (as
+std::uint32_t) pointers with references.
+
+You can revert to the previous behaviour by commenting lines in the
+scripts/data.py file :
+
+```c++
+PROJECTED_NATIVE_C_TYPE = set((
+## stop C type projection (pointer -> reference)
+#    "int8_t",
+#    "int32_t",
+#    "int64_t",
+#    "uint8_t",
+#    "uint32_t",
+#    "uint64_t",
+#    "float",
+#    "XrSpaceUserIdFB",
+))
+
+SKIP_PROJECTION = set((
+    "XrBaseInStructure",
+    "XrBaseOutStructure",
+## unproject few OpenXR types
+#    "XrViewState",
+#    "XrView",
+))
+```
+
 ## See Also
 
 ## Credits
